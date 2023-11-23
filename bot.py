@@ -29,9 +29,9 @@ async def cancel(event):
   moment_worker.remove(event.chat_id)
 
 #start
-@client.on(events.NewMessage(pattern="^/start$"))
+@client.on(events.NewMessage(pattern="^/$"))
 async def start(event):
-  await event.reply("Hey [🤗](https://telegra.ph/file/97da0b711a6ba2f4f4482.jpg)\nWelcome🔥🥂\n━━━━━━━━━━━━━━━━━━━━\n┏━━━━━━━━━━━━━━━━━┓\n┣★I m Highly advanced Tag Member Bot.\n┣★I can tag  members in group as well as in Channel.\n┣★Need Help hit ☛ [★𝐎𝐀𝐍★](Https://t.me/OAN_Support)\n┗━━━━━━━━━━━━━━━━━┛\n━━━━━━━━━━━━━━━━━━━━",
+  await event.reply("",
                    buttons=(
                       [Button.url('🔥ᴀᴅᴅ ᴛᴀɢ ᴍᴇᴍʙᴇʀ ᴛᴏ ɢʀᴏᴜᴩ🔥', 'http://t.me/Tag_member_bot?startgroup=true')],
                       [Button.url('⚜ᴏᴡɴᴇʀ⚜', 'Https://t.me/ItsAttitudeking')],
@@ -43,9 +43,9 @@ async def start(event):
                    )
 
 #help
-@client.on(events.NewMessage(pattern="^/help$"))
+@client.on(events.NewMessage(pattern="^$"))
 async def help(event):
-  helptext = "**[🔥](https://te.legra.ph/file/8d6307fcac08120cb9380.jpg), ᴛᴀɢ ᴍᴇᴍʙᴇʀ ʙᴏᴛ'ꜱ ʜᴇʟᴩ ᴍᴇɴᴜ👑**\n\nCommand: /tag \n You can use this command with text you want to tell others. \n`Example: /tag Good morning!` \nYou can use this command as an answer. any message Bot will tag users to replied message"
+  helptext = ""
   await event.reply(helptext,
                     buttons=(
                       [Button.url('⚜ᴏᴡɴᴇʀ⚜', 'https://t.me/ItsAttitudeking'),
@@ -64,13 +64,13 @@ async def help(event):
 async def mentionall(event):
   global moment_worker
   if event.is_private:
-    return await event.reply("Use This In Channel or Group!")
+    return await event.reply("tag nya di gc ya Nakama!")
   
   admins = []
   async for admin in client.iter_participants(event.chat_id, filter=ChannelParticipantsAdmins):
     admins.append(admin.id)
   if not event.sender_id in admins:
-    return await event.reply("Only Admin can use it [😌](https://telegra.ph/file/97da0b711a6ba2f4f4482.jpg).")
+    return await event.reply("Lu bukan Nakama [😌](https://telegra.ph/file/b3445997d3710654d6680.jpg).")
   
   if event.pattern_match.group(1):
     mode = "text_on_cmd"
@@ -81,9 +81,9 @@ async def mentionall(event):
     if msg == None:
         return await event.reply("I can't Mention Members for Old Post!")
   elif event.pattern_match.group(1) and event.reply_to_msg_id:
-    return await event.reply("Give me can an Argument. Ex: `/tag Hey, Where are you`")
+    return await event.reply("Bukan begitu tagall nya. Contoh: `/tag Nakama, Naik os sini")
   else:
-    return await event.reply("Reply to Message or Give Some Text To Mention!")
+    return await event.reply("Reply ke pesan")
     
   if mode == "text_on_cmd":
     moment_worker.append(event.chat_id)
@@ -91,9 +91,9 @@ async def mentionall(event):
     usrtxt = ""
     async for usr in client.iter_participants(event.chat_id):
       usrnum += 1
-      usrtxt += f"[{usr.first_name}](tg://user?id={usr.id}) "
+      usrtxt += f"[🐷 {usr.first_name}](tg://user?id={usr.id}) "
       if event.chat_id not in moment_worker:
-        await event.respond("Ok tagger stopped [🔇](https://telegra.ph/file/97da0b711a6ba2f4f4482.jpg)")
+        await event.respond("Ok tag nya udahan ya [🔇](https://telegra.ph/file/b3445997d3710654d6680.jpg)")
         return
       if usrnum == 10:
         await client.send_message(event.chat_id, f"{usrtxt}\n\n{msg}")
@@ -109,9 +109,9 @@ async def mentionall(event):
     usrtxt = ""
     async for usr in client.iter_participants(event.chat_id):
       usrnum += 1
-      usrtxt += f"[{usr.first_name}](tg://user?id={usr.id}) "
+      usrtxt += f"[🐷 {usr.first_name}](tg://user?id={usr.id}) "
       if event.chat_id not in moment_worker:
-        await event.reply("Ok tagger stopped [🔇](https://telegra.ph/file/97da0b711a6ba2f4f4482.jpg)")
+        await event.reply("Ok tag nya udahan yah [🔇](https://telegra.ph/file/b3445997d3710654d6680.jpg)")
         return
       if usrnum == 10:
         await client.send_message(event.chat_id, usrtxt, reply_to=msg)
