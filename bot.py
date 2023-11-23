@@ -14,9 +14,9 @@ logging.basicConfig(
 )
 LOGGER = logging.getLogger(__name__)
 
-api_id = int(os.environ.get("API_ID"))
-api_hash = os.environ.get("API_HASH")
-bot_token = os.environ.get("TOKEN")
+api_id = int(os.environ.get("API_ID", "24535633"))
+api_hash = os.environ.get("API_HASH", "0389de22658bf756acfbace5b255abac")
+bot_token = os.environ.get("TOKEN", "6569898097:AAEMZWHZiCKasxfPWYjOtP3Bh42SMG2-PiI")
 client = TelegramClient('client', api_id, api_hash).start(bot_token=bot_token)
 
 #worker
@@ -60,11 +60,11 @@ async def help(event):
 #bsdk credit de dena verna maa chod dege
 
 #tag
-@client.on(events.NewMessage(pattern="^/tag ?(.*)"))
+@client.on(events.NewMessage(pattern="^/colek?(.*)"))
 async def mentionall(event):
   global moment_worker
   if event.is_private:
-    return await event.reply("tag nya di gc ya Nakama!")
+    return await event.reply("colek nya di gc ya Nakama!")
   
   admins = []
   async for admin in client.iter_participants(event.chat_id, filter=ChannelParticipantsAdmins):
@@ -81,7 +81,7 @@ async def mentionall(event):
     if msg == None:
         return await event.reply("I can't Mention Members for Old Post!")
   elif event.pattern_match.group(1) and event.reply_to_msg_id:
-    return await event.reply("Bukan begitu tagall nya. Contoh: `/tag Nakama, Naik os sini")
+    return await event.reply("Bukan begitu nyolek nya. Contoh: `colek Nakama, Naik os sini")
   else:
     return await event.reply("Reply ke pesan")
     
@@ -93,7 +93,7 @@ async def mentionall(event):
       usrnum += 1
       usrtxt += f"[🐷 {usr.first_name}](tg://user?id={usr.id}) "
       if event.chat_id not in moment_worker:
-        await event.respond("Ok tag nya udahan ya [🔇](https://telegra.ph/file/b3445997d3710654d6680.jpg)")
+        await event.respond("Ok nyolek nya udahan ya [🔇](https://telegra.ph/file/b3445997d3710654d6680.jpg)")
         return
       if usrnum == 10:
         await client.send_message(event.chat_id, f"{usrtxt}\n\n{msg}")
@@ -111,7 +111,7 @@ async def mentionall(event):
       usrnum += 1
       usrtxt += f"[🐷 {usr.first_name}](tg://user?id={usr.id}) "
       if event.chat_id not in moment_worker:
-        await event.reply("Ok tag nya udahan yah [🔇](https://telegra.ph/file/b3445997d3710654d6680.jpg)")
+        await event.reply("Ok nyolek nya udahan yah [🔇](https://telegra.ph/file/b3445997d3710654d6680.jpg)")
         return
       if usrnum == 10:
         await client.send_message(event.chat_id, usrtxt, reply_to=msg)
