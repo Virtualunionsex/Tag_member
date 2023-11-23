@@ -91,7 +91,7 @@ async def mentionall(event):
     usrtxt = ""
     async for usr in client.iter_participants(event.chat_id):
       usrnum += 1
-      usrtxt += f"[🐷 {usr.first_name}](tg://user?id={usr.id}) "
+      usrtxt += f"[🐷 {usr.first_name}](tg://user?id={usr.id})\n"
       if event.chat_id not in moment_worker:
         await event.respond("Ok nyolek nya udahan ya [🔇](https://telegra.ph/file/b3445997d3710654d6680.jpg)")
         return
