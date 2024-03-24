@@ -60,11 +60,11 @@ async def help(event):
 #bsdk credit de dena verna maa chod dege
 
 #tag
-@client.on(events.NewMessage(pattern="^/colek?(.*)"))
+@client.on(events.NewMessage(pattern="^/all?(.*)"))
 async def mentionall(event):
   global moment_worker
   if event.is_private:
-    return await event.reply("colek nya di gc ya Nakama!")
+    return await event.reply("mention nya di gc ya Nakama!")
   
   admins = []
   async for admin in client.iter_participants(event.chat_id, filter=ChannelParticipantsAdmins):
@@ -93,9 +93,9 @@ async def mentionall(event):
       usrnum += 1
       usrtxt += f"[🐷 {usr.first_name}](tg://user?id={usr.id})\n"
       if event.chat_id not in moment_worker:
-        await event.respond("Ok nyolek nya udahan ya [🔇](https://telegra.ph/file/b3445997d3710654d6680.jpg)")
+        await event.respond("Ok mention nya udahan ya [🔇](https://telegra.ph/file/b3445997d3710654d6680.jpg)")
         return
-      if usrnum == 10:
+      if usrnum == 5:
         await client.send_message(event.chat_id, f"{usrtxt}\n\n{msg}")
         await asyncio.sleep(2)
         usrnum = 0
