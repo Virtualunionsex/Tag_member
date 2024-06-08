@@ -91,7 +91,7 @@ async def mentionall(event):
     usrtxt = ""
     async for usr in client.iter_participants(event.chat_id):
       usrnum += 1
-      usrtxt += f"[🐷 {usr.first_name}](tg://user?id={usr.id})\n"
+      usrtxt += f"[🐧 {usr.first_name}](tg://user?id={usr.id})\n"
       if event.chat_id not in moment_worker:
         await event.respond("Ok mention nya udahan ya [🔇](https://telegra.ph/file/b3445997d3710654d6680.jpg)")
         return
@@ -109,7 +109,7 @@ async def mentionall(event):
     usrtxt = ""
     async for usr in client.iter_participants(event.chat_id):
       usrnum += 1
-      usrtxt += f"[🐷 {usr.first_name}](tg://user?id={usr.id}\n) "
+      usrtxt += f"[🐧 {usr.first_name}](tg://user?id={usr.id}\n) "
       if event.chat_id not in moment_worker:
         await event.reply("Ok tag nya udahan yah [🔇](https://telegra.ph/file/b3445997d3710654d6680.jpg)")
         return
